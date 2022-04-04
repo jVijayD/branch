@@ -14,13 +14,13 @@ node('slave2') {
  stages {
    stage('building slave1') {
    steps {
-build job: 'new-pipe', parameters: [[$class: 'LabelParameterValue', name: 'jenkins', label: 'slave01']]
+build job: 'new-pipe', parameters: [[$class: 'LabelParameterValue', name: 'slave01', label: 'jenkins']]
 }
 }
 
    stage ('building slave2') {
    steps {
-   build job: 'multi-pipeline', parameters: [[$class: 'LabelParameterValue', name: 'jenkins', label: 'slave2']]
+   build job: 'multi-pipeline', parameters: [[$class: 'LabelParameterValue', name: 'slave2', label: 'jenkins']]
    }
 }
 }
