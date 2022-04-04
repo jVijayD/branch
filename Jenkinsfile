@@ -3,13 +3,6 @@ agent any
  tools { 
  maven 'maven3.8.4'
  }
- 
-node('slave01') {
-    build 'new-pipe'
-}
-node('slave2') {
-    build 'mutli-pipeline'
-}
 
  stages {
    stage('building slave1') {
