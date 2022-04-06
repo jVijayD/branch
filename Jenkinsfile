@@ -13,6 +13,7 @@ agent any
  stages {
    stage('building slave1') {
    steps {
+    script {
     if("${params.environment}" == 'Dev'){
 build job: 'new-pipe', parameters: [[$class: 'NodeParameterValue', name: 'slave01', labels: ['label1'], nodeEligibility: [$class: 'AllNodeEligibility']]]
        }else{
@@ -21,5 +22,5 @@ build job: 'new-pipe', parameters: [[$class: 'NodeParameterValue', name: 'slave0
     }
        }
        }
-       
+ }
 }
