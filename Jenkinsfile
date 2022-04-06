@@ -10,11 +10,4 @@ agent any
 build job: 'new-pipe', parameters: [[$class: 'NodeParameterValue', name: 'slave01', labels: ['label1'], nodeEligibility: [$class: 'AllNodeEligibility']]]
         }
     }
-
-   stage ('building slave2') {
-   steps {
-   build job: 'nexus', parameters: [[$class: 'LabelParameterValue', name: 'slave2', label: 'label2']]
-   }
-}
-}
 }
