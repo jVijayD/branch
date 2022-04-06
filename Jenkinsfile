@@ -13,7 +13,7 @@ build job: 'new-pipe', parameters: [[$class: 'LabelParameterValue', name: 'slave
 
    stage ('building slave2') {
    steps {
-   build job: 'multi-pipeline', parameters: [[$class: 'LabelParameterValue', name: 'slave2', label: 'label2']]
+   build job: 'nexus', parameters: [[$class: 'LabelParameterValue', name: 'slave2', label: 'label2']]
    }
 }
 }
