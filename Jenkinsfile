@@ -8,8 +8,8 @@ agent any
    stage('building slave1') {
    steps {
 build job: 'new-pipe', parameters: [[$class: 'NodeParameterValue', name: 'slave01', labels: ['label1'], nodeEligibility: [$class: 'AllNodeEligibility']]]
-}
-}
+        }
+    }
 
    stage ('building slave2') {
    steps {
