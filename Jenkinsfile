@@ -11,3 +11,4 @@ build job: 'new-pipe', parameters: [[$class: 'NodeParameterValue', name: 'slave0
         }
     }
 }
+}
