@@ -10,5 +10,5 @@ agent any
 build job: 'new-pipe', parameters: [[$class: 'NodeParameterValue', name: 'slave01', labels: ['label1'], nodeEligibility: [$class: 'AllNodeEligibility']]]
         }
     }
-}
+ 
 }
