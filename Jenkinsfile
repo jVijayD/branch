@@ -7,13 +7,13 @@ agent any
  stages {
    stage('building slave1') {
    steps {
-build job: 'new-pipe', parameters: [[$class: 'LabelParameterValue', name: 'slave01', label: 'jenkins']]
+build job: 'new-pipe', parameters: [[$class: 'LabelParameterValue', name: 'slave01', label: 'label1']]
 }
 }
 
    stage ('building slave2') {
    steps {
-   build job: 'multi-pipeline', parameters: [[$class: 'LabelParameterValue', name: 'slave2', label: 'jenkins']]
+   build job: 'multi-pipeline', parameters: [[$class: 'LabelParameterValue', name: 'slave2', label: 'label2']]
    }
 }
 }
