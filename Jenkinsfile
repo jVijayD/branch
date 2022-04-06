@@ -15,9 +15,9 @@ agent any
    steps {
     script {
     if("${params.environment}" == 'Dev'){
-build job: 'new-pipe', parameters: [[$class: 'NodeParameterValue', name: 'slave01', labels: ['label1'], nodeEligibility: [$class: 'AllNodeEligibility']]]
+              build job: 'new-pipe', parameters: [[$class: 'NodeParameterValue', name: 'slave01', labels: ['label1'], nodeEligibility: [$class: 'AllNodeEligibility']]]
        }else{
-        build job: 'nexus', parameters: [[$class: 'NodeParameterValue', name: 'slave02', labels: ['label2'], nodeEligibility: [$class: 'AllNodeEligibility']]]
+                build job: 'nexus', parameters: [[$class: 'NodeParameterValue', name: 'slave02', labels: ['label2'], nodeEligibility: [$class: 'AllNodeEligibility']]]
         }
     }
        }
