@@ -1,8 +1,7 @@
 pipeline {
  parameters {
   choice(choices: ['Dev', 'QA'], description: 'Target for build env', name: 'env')
-
-choice(choices: ['Y','N'], description: 'is the deployment for release' , name: 'isRelease')
+  choice(choices: ['Y','N'], description: 'is the deployment for release' , name: 'isRelease')
 
 }
 agent any
@@ -14,10 +13,11 @@ agent any
    stage('building') {
    steps {
     script {
-    if ("${params.environment}" == 'Dev')
+    if ("${params.env}" == 'Dev')
      then
               build job: 'new-pipe', parameters: [[$class: 'NodeParameterValue', name: 'slave01', labels: ['label1'], nodeEligibility: [$class: 'AllNodeEligibility']]]
-       else
+    }
+    else{
                 build job: 'nexus', parameters: [[$class: 'NodeParameterValue', name: 'slave02', labels: ['label2'], nodeEligibility: [$class: 'AllNodeEligibility']]]
         }
     }
