@@ -1,34 +1,26 @@
 pipeline {
-parameters {
-
-choice(choices: ['Dev', 'QA'], description: 'Target for build env', name: 'env')
-
-choice(choices: ['Y','N'], description: 'is the deployment for release' , name: 'isRelease')
+ parameters {
+  choice(choices: ['Dev', 'QA'], description: 'Target for build env', name: 'env')
+  choice(choices: ['Y','N'], description: 'is the deployment for release' , name: 'isRelease')
 
 }
+agent any
+ tools { 
+ maven 'maven3.8.4'
+ }
 
-    agent any   
-    tools {
-    maven 'maven3.8.4'	
-	}
-	options {
-	withAWS(profile:'default')
-     }
-    stages {
-        stage('Checkout') {
-            steps {
-                checkout([$class: 'GitSCM', branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/keyspaceits/javawebapp.git']]])
-            }
+ stages {
+   stage('building') {
+   steps {
+    script {
+     if ("${params.env}" == 'Dev') {
+              build job: 'new-pipe', parameters: [[$class: 'NodeParameterValue', name: 'slave01', labels: ['label1'], nodeEligibility: [$class: 'AllNodeEligibility']]]
+    }
+    else{
+                build job: 'nexus', parameters: [[$class: 'NodeParameterValue', name: 'slave02', labels: ['label2'], nodeEligibility: [$class: 'AllNodeEligibility']]]
         }
-        stage('Build') {
-            steps {
-                sh 'mvn clean install -f pom.xml'
-            }
-        }
-	    stage('S3 Bucket') {
-		    steps {
-                  s3Upload(acl: 'Private', bucket:"jenkins-dev1", cacheControl: '', excludePathPattern: '', file: 'CounterWebApp.war', workingDir:'/var/lib/jenkins/workspace/mutli-pipeline_main/target/')
-		    }
-	    }
-   }
+    }
+       }
+       }
+ } 
 }
